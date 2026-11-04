@@ -1,0 +1,12 @@
+buildStudentLayout("Marks and assignments");
+const $ = id => document.getElementById(id);
+const badge = (text, cls) => `<span class="badge-soft ${saEscape(cls)}">${saEscape(text)}</span>`;
+const date = value => value ? new Date(value).toLocaleDateString("en-IN", {day: "numeric", month: "short", year: "numeric"}) : "-";
+const render = (tests, assignments) => {
+  const done = tests.filter(item => item.marks_obtained != null), avg = done.length ? Math.round(done.reduce((sum, item) => sum + Number(item.marks_obtained) / Number(item.max_marks) * 100, 0) / done.length) : 0;
+  $("stats").innerHTML = [["Average score", `${avg}%`, "bi-clipboard-data-fill", "#e3dcf5", "#4c3a96"], ["Tests taken", `${done.length} of ${tests.length}`, "bi-journal-check", "#dcebf7", "#1c5a8c"], ["Assignments pending", assignments.filter(item => item.status !== "submitted").length, "bi-hourglass-split", "#fbeccd", "#8a5a06"]].map(item => `<div class="col-md-4"><div class="panel stat"><span class="ico" style="background:${saEscape(item[3])};color:${saEscape(item[4])}"><i class="bi ${saEscape(item[2])}"></i></span><div><div class="val">${saEscape(item[1])}</div><div class="lbl">${saEscape(item[0])}</div></div></div></div>`).join("");
+  $("tests").innerHTML = tests.length ? tests.map(item => { const percent = item.marks_obtained == null ? null : Math.round(item.marks_obtained / item.max_marks * 100); return `<tr><td><b>${saEscape(item.title)}</b></td><td>${saEscape(date(item.date))}</td><td>${percent == null ? "" : `${saEscape(item.marks_obtained)} / ${saEscape(item.max_marks)}`}</td><td>${percent == null ? badge("Upcoming", "b-blue") : `${saEscape(percent)}%`}</td><td>${percent == null ? "" : `${saEscape(item.marks_obtained)} / ${saEscape(item.max_marks)}`}</td></tr>`; }).join("") : `<tr><td colspan="5" class="text-center text-secondary py-4">No tests found.</td></tr>`;
+  $("asg").innerHTML = assignments.length ? assignments.map(item => `<tr><td><b>${saEscape(item.title)}</b></td><td>${saEscape(date(item.due_date))}</td><td>${badge(item.status || "Pending", item.status === "submitted" ? "b-green" : "b-amber")}</td><td></td></tr>`).join("") : `<tr><td colspan="4" class="text-center text-secondary py-4">No assignments found.</td></tr>`;
+};
+["stats", "tests", "asg"].forEach(id => saLoading(id));
+Promise.all([api.get("/me/marks"), api.get("/me/assessments")]).then(result => render(result[0].data || [], result[1].data || [])).catch(error => { saError(error); ["stats", "tests", "asg"].forEach(id => saEmpty(id, "Unable to load marks.")); });

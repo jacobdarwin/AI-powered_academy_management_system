@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link href="../assets/admin.css" rel="stylesheet">
+  <link href="../assets/superadmin.css" rel="stylesheet"><title>My profile | Staff</title></head>
+<body><aside class="sidebar" id="sidebar"></aside><div class="backdrop" id="backdrop"></div>
+<div class="main"><header class="topbar" id="topbar"></header><main class="content">
+  <div class="row g-3"><div class="col-xl-5"><form class="panel" id="f1" novalidate><h2>My details</h2><div class="row g-3">
+    <div class="col-12"><label class="form-label fw-semibold">Name and role</label><input id="who" class="form-control" disabled></div>
+    <div class="col-md-6"><label class="form-label fw-semibold" for="phone">Phone</label><input id="phone" class="form-control" pattern="[0-9]{10}" inputmode="numeric" required><div class="invalid-feedback">Enter a 10-digit phone number.</div></div>
+    <div class="col-md-6"><label class="form-label fw-semibold" for="email">Email</label><input id="email" type="email" class="form-control" required><div class="invalid-feedback">Enter a valid email.</div></div>
+    <div class="col-12"><button class="btn btn-brand">Save changes</button></div></div></form></div>
+  <div class="col-xl-5"><form class="panel" id="f2" novalidate><h2>Change password</h2>
+    <div class="mb-2"><label class="form-label fw-semibold" for="p0">Current password</label><input id="p0" type="password" class="form-control" autocomplete="current-password" required></div>
+    <div class="mb-2"><label class="form-label fw-semibold" for="p1">New password</label><input id="p1" type="password" minlength="8" class="form-control" autocomplete="new-password" required><div class="invalid-feedback">Use at least 8 characters.</div></div>
+    <div class="mb-3"><label class="form-label fw-semibold" for="p2">Confirm new password</label><input id="p2" type="password" class="form-control" autocomplete="new-password" required><div class="invalid-feedback">The passwords do not match.</div></div>
+    <button class="btn btn-brand">Update password</button></form></div></div>
+</main></div>
+<div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="toast" class="toast text-bg-success" role="status"><div class="toast-body" id="toastMsg"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/api.js"></script><script src="../assets/staff.js"></script>
+<script src="../assets/js/staff/profile.js"></script></body></html>

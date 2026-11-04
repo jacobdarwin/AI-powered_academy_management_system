@@ -1,0 +1,14 @@
+buildLayout("Settings");
+const $ = sa$;
+const submit = (id, payload, message) => $(id).addEventListener("submit", async event => {
+  event.preventDefault(); const form = event.target;
+  if (!form.checkValidity()) { form.classList.add("was-validated"); return; }
+  try { await api.patch("/settings", payload()); form.classList.remove("was-validated"); saToast(message); } catch (error) { saFormErrors(form, error.errors); saError(error); }
+});
+const load = async () => { try { const values = (await api.get("/settings")).data || {}; const fields = {academy_name:"aName", phone:"aPhone", email:"aEmail", gst_number:"aGst", address:"aAddr", receipt_prefix:"rPre", grace_period:"rGrace", minimum_attendance:"rMin", fee_due_reminders:"n1", absence_alerts:"n2", placement_announcements:"n3", weekly_summary:"n4"}; Object.entries(fields).forEach(([key, id]) => { if (values[key] == null || !$(id)) return; if ($(id).type === "checkbox") $(id).checked = values[key] === true || values[key] === "true"; else $(id).value = values[key]; }); } catch (error) { saError(error); ["aName","aPhone","aEmail","aGst","aAddr","rPre","rGrace","rMin"].forEach(id => { if ($(id)) $(id).setCustomValidity("Unable to load settings."); }); } };
+submit("f1", () => ({academy_name:$("aName").value.trim(), phone:$("aPhone").value.trim(), email:$("aEmail").value.trim(), gst_number:$("aGst").value.trim(), address:$("aAddr").value.trim()}), "Academy details saved.");
+submit("f2", () => ({receipt_prefix:$("rPre").value.trim(), grace_period:Number($("rGrace").value), minimum_attendance:Number($("rMin").value)}), "Fee settings saved.");
+$("saveN").onclick = async () => { try { await api.patch("/settings", {fee_due_reminders:$("n1").checked, absence_alerts:$("n2").checked, placement_announcements:$("n3").checked, weekly_summary:$("n4").checked}); saToast("Notification settings saved."); } catch (error) { saError(error); } };
+$("f3").addEventListener("submit", async event => { event.preventDefault(); const form = event.target; $("p2").setCustomValidity($("p1").value === $("p2").value ? "" : "Passwords do not match."); if (!form.checkValidity()) { form.classList.add("was-validated"); return; } try { await api.post("/auth/change-password", {current_password:$("p0").value, new_password:$("p1").value}); form.reset(); form.classList.remove("was-validated"); saToast("Password updated."); } catch (error) { saFormErrors(form, error.errors); saError(error); } });
+$("backup").onclick = async () => { try { const response = await api.get("/settings/backup?format=json"); const link = document.createElement("a"); link.href = URL.createObjectURL(new Blob([JSON.stringify(response.data, null, 2)], {type:"application/json"})); link.download = "academy-backup.json"; link.click(); } catch (error) { saError(error); } };
+load();

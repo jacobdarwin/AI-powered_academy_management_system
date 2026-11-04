@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link href="../assets/admin.css" rel="stylesheet">
+  <link href="../assets/superadmin.css" rel="stylesheet"><title>Courses & Batches | Super Admin</title></head>
+<body>
+<aside class="sidebar" id="sidebar"></aside><div class="backdrop" id="backdrop"></div>
+<div class="main"><header class="topbar" id="topbar"></header>
+<main class="content">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div><h2 class="h4 fw-bold mb-0">Courses and batches</h2><div class="text-secondary small" id="count"></div></div>
+    <div class="d-flex gap-2"><button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#courseModal"><i class="bi bi-plus-lg me-1"></i>Add course</button>
+    <button class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#batchModal"><i class="bi bi-plus-lg me-1"></i>Create batch</button></div>
+  </div>
+  <ul class="nav nav-pills mb-3" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tCourses" type="button" role="tab">Courses</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tBatches" type="button" role="tab">Batches</button></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="tCourses"><div class="row g-3" id="courseCards"></div></div>
+    <div class="tab-pane fade" id="tBatches"><div class="panel"><div class="table-responsive"><table class="table align-middle table-hover">
+      <thead><tr><th>Batch</th><th>Course</th><th>Trainer</th><th>Timing</th><th>Start date</th><th style="min-width:130px">Seats filled</th><th>Status</th></tr></thead><tbody id="batchRows"></tbody></table></div></div></div>
+  </div>
+</main></div>
+
+<div class="modal fade" id="courseModal" tabindex="-1" aria-labelledby="cT" aria-hidden="true"><div class="modal-dialog"><form class="modal-content" id="courseForm" novalidate>
+  <div class="modal-header"><h2 class="modal-title h5 fw-bold" id="cT">Add course</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+  <div class="modal-body row g-3">
+    <div class="col-12"><label class="form-label fw-semibold" for="cName">Course name</label><input id="cName" class="form-control" required><div class="invalid-feedback">Enter the course name.</div></div>
+    <div class="col-6"><label class="form-label fw-semibold" for="cFee">Fees (â‚¹)</label><input id="cFee" type="number" min="1" class="form-control" required><div class="invalid-feedback">Enter the fees.</div></div>
+    <div class="col-6"><label class="form-label fw-semibold" for="cDur">Duration (months)</label><input id="cDur" type="number" min="1" class="form-control" required><div class="invalid-feedback">Enter the duration.</div></div>
+    <div class="col-12"><label class="form-label fw-semibold" for="cTools">Tools covered</label><input id="cTools" class="form-control" placeholder="Python, Django, MySQL"></div>
+  </div>
+  <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-brand">Save course</button></div></form></div></div>
+
+<div class="modal fade" id="batchModal" tabindex="-1" aria-labelledby="bT" aria-hidden="true"><div class="modal-dialog"><form class="modal-content" id="batchForm" novalidate>
+  <div class="modal-header"><h2 class="modal-title h5 fw-bold" id="bT">Create batch</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+  <div class="modal-body row g-3">
+    <div class="col-6"><label class="form-label fw-semibold" for="bName">Batch code</label><input id="bName" class="form-control" placeholder="PFS-14" required><div class="invalid-feedback">Enter a batch code.</div></div>
+    <div class="col-6"><label class="form-label fw-semibold" for="bCourse">Course</label><select id="bCourse" class="form-select"></select></div>
+    <div class="col-6"><label class="form-label fw-semibold" for="bTrainer">Trainer</label><select id="bTrainer" class="form-select"></select></div>
+    <div class="col-6"><label class="form-label fw-semibold" for="bTime">Timing</label><select id="bTime" class="form-select"><option>Morning (9 to 11 AM)</option><option>Afternoon (2 to 4 PM)</option><option>Evening (6 to 8 PM)</option><option>Weekend (Sat and Sun)</option></select></div>
+    <div class="col-6"><label class="form-label fw-semibold" for="bStart">Start date</label><input id="bStart" type="date" class="form-control" required><div class="invalid-feedback">Select the start date.</div></div>
+    <div class="col-6"><label class="form-label fw-semibold" for="bSeats">Total seats</label><input id="bSeats" type="number" min="1" value="30" class="form-control" required></div>
+  </div>
+  <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-brand">Create batch</button></div></form></div></div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="toast" class="toast text-bg-success" role="status"><div class="toast-body" id="toastMsg"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/api.js"></script><script src="../assets/admin.js"></script>
+<script src="../assets/js/superadmin/courses.js"></script></body></html>

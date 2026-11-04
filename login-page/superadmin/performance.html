@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link href="../assets/admin.css" rel="stylesheet">
+  <link href="../assets/superadmin.css" rel="stylesheet"><title>Staff performance | Super Admin</title></head>
+<body><aside class="sidebar" id="sidebar"></aside><div class="backdrop" id="backdrop"></div>
+<div class="main"><header class="topbar" id="topbar"></header><main class="content">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div><h2 class="h4 fw-bold mb-0">Staff performance and increments</h2><div class="text-secondary small">A score from four areas suggests an increment. You review and approve each one.</div></div>
+    <select id="fRole" class="form-select" style="width:auto" aria-label="Filter by role"><option value="">All roles</option></select></div>
+  <div class="row g-3 mb-3">
+    <div class="col-xl-4"><div class="panel h-100"><h2>What counts most</h2><p class="small text-secondary">Move a slider to change how much an area counts. Scores update straight away.</p><div id="weights"></div>
+      <h2 class="mt-3">Increment bands</h2><div class="small" id="bands"></div></div></div>
+    <div class="col-xl-8"><div class="row g-3 mb-3" id="sum"></div>
+      <div class="panel"><div class="table-responsive"><table class="table align-middle"><thead><tr><th>Staff</th><th style="min-width:130px">Score</th><th>Suggested</th><th>Salary now</th><th>Salary after</th><th>Decision</th></tr></thead><tbody id="rows"></tbody></table></div></div></div></div>
+  <p class="small text-secondary">Scores come from recorded data (student feedback or targets, punctuality, results, initiative) and are a guide. A manager should look at each case before approving, and talk with staff about their score.</p>
+</main></div>
+<div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="toast" class="toast text-bg-success" role="status"><div class="toast-body" id="toastMsg"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/api.js"></script><script src="../assets/admin.js"></script>
+<script src="../assets/js/superadmin/performance.js"></script></body></html>

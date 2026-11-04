@@ -1,0 +1,9 @@
+.env
+*.db
+instance/
+uploads/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage

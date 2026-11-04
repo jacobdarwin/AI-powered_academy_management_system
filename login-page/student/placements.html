@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link href="../assets/admin.css" rel="stylesheet">
+  <link href="../assets/student.css" rel="stylesheet"><title>Placements | Student</title></head>
+<body><aside class="sidebar" id="sidebar"></aside><div class="backdrop" id="backdrop"></div>
+<div class="main"><header class="topbar" id="topbar"></header><main class="content">
+  <div class="mb-3"><h2 class="h4 fw-bold mb-0">Placements</h2><div class="text-secondary small">Your attendance is <b id="myAtt"></b>. Drives need a minimum attendance.</div></div>
+  <div class="panel mb-3"><h2>Resume</h2><div class="d-flex flex-wrap align-items-center gap-3"><label class="btn btn-brand mb-0"><i class="bi bi-upload me-1"></i>Upload resume (PDF)<input id="resume" type="file" accept=".pdf" hidden></label><span id="resumeName" class="text-secondary small">No resume uploaded. You need one before you can apply.</span></div></div>
+  <ul class="nav nav-pills mb-3" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tOpen" type="button" role="tab">Open drives</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tMine" type="button" role="tab">My applications</button></li></ul>
+  <div class="tab-content"><div class="panel">
+    <div class="tab-pane fade show active" id="tOpen"><div class="table-responsive"><table class="table align-middle"><thead><tr><th>Company</th><th>Role</th><th>Date</th><th>Package</th><th>Needs</th><th></th></tr></thead><tbody id="drives"></tbody></table></div></div>
+    <div class="tab-pane fade" id="tMine"><div id="apps"></div><div id="noApps" class="text-center text-secondary py-4">You have not applied to any drive yet. Open the drives tab to apply.</div></div>
+  </div></div>
+</main></div>
+<div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="toast" class="toast text-bg-success" role="status"><div class="toast-body" id="toastMsg"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/api.js"></script><script src="../assets/student.js"></script>
+<script src="../assets/js/student/placements.js"></script></body></html>

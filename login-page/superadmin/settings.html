@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link href="../assets/admin.css" rel="stylesheet">
+  <link href="../assets/superadmin.css" rel="stylesheet"><title>Settings | Super Admin</title></head>
+<body>
+<aside class="sidebar" id="sidebar"></aside><div class="backdrop" id="backdrop"></div>
+<div class="main"><header class="topbar" id="topbar"></header>
+<main class="content">
+  <div class="mb-3"><h2 class="h4 fw-bold mb-0">Settings</h2><div class="text-secondary small">Academy details, fees, notifications and your account.</div></div>
+  <div class="row g-3">
+    <div class="col-xl-7"><form class="panel mb-3" id="f1" novalidate><h2>Academy details</h2><div class="row g-3">
+      <div class="col-md-6"><label class="form-label fw-semibold" for="aName">Academy name</label><input id="aName" class="form-control" value="Your Academy" required><div class="invalid-feedback">Enter the academy name.</div></div>
+      <div class="col-md-6"><label class="form-label fw-semibold" for="aPhone">Phone</label><input id="aPhone" class="form-control" value="9840000000" pattern="[0-9]{10}" required><div class="invalid-feedback">Enter a 10-digit phone number.</div></div>
+      <div class="col-md-6"><label class="form-label fw-semibold" for="aEmail">Email</label><input id="aEmail" type="email" class="form-control" value="info@youracademy.com" required><div class="invalid-feedback">Enter a valid email.</div></div>
+      <div class="col-md-6"><label class="form-label fw-semibold" for="aGst">GST number (optional)</label><input id="aGst" class="form-control"></div>
+      <div class="col-12"><label class="form-label fw-semibold" for="aAddr">Address</label><textarea id="aAddr" rows="2" class="form-control">Chennai, Tamil Nadu</textarea></div>
+      <div class="col-12"><button class="btn btn-brand">Save details</button></div></div></form>
+
+      <form class="panel" id="f2" novalidate><h2>Fees and receipts</h2><div class="row g-3">
+      <div class="col-md-4"><label class="form-label fw-semibold" for="rPre">Receipt prefix</label><input id="rPre" class="form-control" value="RC-" required></div>
+      <div class="col-md-4"><label class="form-label fw-semibold" for="rGrace">Grace period (days)</label><input id="rGrace" type="number" min="0" class="form-control" value="3"></div>
+      <div class="col-md-4"><label class="form-label fw-semibold" for="rMin">Minimum attendance (%)</label><input id="rMin" type="number" min="0" max="100" class="form-control" value="75"></div>
+      <div class="col-12"><button class="btn btn-brand">Save fee settings</button></div></div></form></div>
+
+    <div class="col-xl-5"><div class="panel mb-3"><h2>Notifications</h2>
+      <div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox" id="n1" checked><label class="form-check-label" for="n1">Fee due reminders</label></div>
+      <div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox" id="n2" checked><label class="form-check-label" for="n2">Absence alerts to parents</label></div>
+      <div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox" id="n3" checked><label class="form-check-label" for="n3">Placement drive announcements</label></div>
+      <div class="form-check form-switch mb-3"><input class="form-check-input" type="checkbox" id="n4"><label class="form-check-label" for="n4">Weekly summary email to Super Admin</label></div>
+      <button class="btn btn-brand" id="saveN">Save notifications</button></div>
+
+      <form class="panel mb-3" id="f3" novalidate><h2>Change password</h2>
+      <div class="mb-2"><label class="form-label fw-semibold" for="p0">Current password</label><input id="p0" type="password" class="form-control" autocomplete="current-password" required></div>
+      <div class="mb-2"><label class="form-label fw-semibold" for="p1">New password</label><input id="p1" type="password" minlength="8" class="form-control" autocomplete="new-password" required><div class="invalid-feedback">Use at least 8 characters.</div></div>
+      <div class="mb-3"><label class="form-label fw-semibold" for="p2">Confirm new password</label><input id="p2" type="password" class="form-control" autocomplete="new-password" required><div class="invalid-feedback">The passwords do not match.</div></div>
+      <button class="btn btn-brand">Update password</button></form>
+
+      <div class="panel"><h2>Data</h2><p class="small text-secondary">Download a copy of your academy data. Automatic daily backups need the backend.</p>
+      <button class="btn btn-outline-secondary" id="backup"><i class="bi bi-download me-1"></i>Download backup (JSON)</button></div></div>
+  </div>
+</main></div>
+<div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="toast" class="toast text-bg-success" role="status"><div class="toast-body" id="toastMsg"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/api.js"></script><script src="../assets/admin.js"></script>
+<script src="../assets/js/superadmin/settings.js"></script></body></html>
