@@ -35,6 +35,27 @@ The project contains:
 - Announcements, notifications, study materials, and certificates
 - API validation, role guards, object-level access checks, and error handling
 
+### AI, ML, deep learning, and LLM roadmap
+
+The application includes the user-facing foundation for intelligent academy
+features:
+
+- **AI assistant**: students can ask questions about attendance, fees,
+  classes, deadlines, and placement drives through the assistant interface.
+- **Machine learning analytics**: the Super Admin area includes a course-demand
+  forecast view designed to use historical admission data.
+- **Deep-learning extensions**: the platform can be extended with models for
+  student performance prediction, dropout-risk analysis, attendance patterns,
+  and personalized learning recommendations.
+- **LLM integration**: the assistant can be connected to a hosted or
+  self-hosted large language model for natural-language answers, summaries,
+  academic guidance, and staff productivity workflows.
+
+The current forecast screen uses a demo trend calculation and the assistant
+uses the backend assistant endpoint. Production ML, deep-learning, and LLM
+deployments require a selected model provider, real training data, privacy
+controls, evaluation, monitoring, and separate production configuration.
+
 ## Screenshots
 
 ### Sign-in
